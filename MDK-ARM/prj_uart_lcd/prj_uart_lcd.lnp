@@ -1,0 +1,22 @@
+--cpu Cortex-M3
+"prj_uart_lcd\startup_stm32f103xb.o"
+"prj_uart_lcd\main.o"
+"prj_uart_lcd\stm32f1xx_it.o"
+"prj_uart_lcd\stm32f1xx_hal_msp.o"
+"prj_uart_lcd\stm32f1xx_hal_gpio_ex.o"
+"prj_uart_lcd\stm32f1xx_hal_uart.o"
+"prj_uart_lcd\stm32f1xx_hal.o"
+"prj_uart_lcd\stm32f1xx_hal_rcc.o"
+"prj_uart_lcd\stm32f1xx_hal_rcc_ex.o"
+"prj_uart_lcd\stm32f1xx_hal_gpio.o"
+"prj_uart_lcd\stm32f1xx_hal_dma.o"
+"prj_uart_lcd\stm32f1xx_hal_cortex.o"
+"prj_uart_lcd\stm32f1xx_hal_pwr.o"
+"prj_uart_lcd\stm32f1xx_hal_flash.o"
+"prj_uart_lcd\stm32f1xx_hal_flash_ex.o"
+"prj_uart_lcd\stm32f1xx_hal_exti.o"
+"prj_uart_lcd\system_stm32f1xx.o"
+--strict --scatter "prj_uart_lcd\prj_uart_lcd.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "prj_uart_lcd.map" -o prj_uart_lcd\prj_uart_lcd.axf

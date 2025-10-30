@@ -1,0 +1,40 @@
+# STM32 UART LCD Project - Git Ignore
+
+# Build outputs
+/Debug/
+/Release/
+/build/
+/obj/
+/out/
+
+# Compiled binaries
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.axf
+
+# STM32CubeIDE
+/.settings/
+/.mxproject
+/.cproject
+/.project
+*.launch
+
+# STM32CubeMX generated (if you use it)
+/Drivers/CMSIS/
+/Drivers/STM32F1xx_HAL_Driver/
+/Middlewares/
+
+# VSCode
+/.vscode/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
