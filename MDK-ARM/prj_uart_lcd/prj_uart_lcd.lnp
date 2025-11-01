@@ -16,6 +16,7 @@
 "prj_uart_lcd\stm32f1xx_hal_flash_ex.o"
 "prj_uart_lcd\stm32f1xx_hal_exti.o"
 "prj_uart_lcd\system_stm32f1xx.o"
+"prj_uart_lcd\lcd.o"
 --strict --scatter "prj_uart_lcd\prj_uart_lcd.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
