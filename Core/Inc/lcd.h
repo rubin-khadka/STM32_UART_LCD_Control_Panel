@@ -3,9 +3,6 @@
 #ifndef LCD_H
 #define LCD_H
 
-#include "main.h"
-#include "stm32f1xx_hal.h"
-
 // LCD Pin Macros - moved from main.c
 #define RS(x) (x==1 ? (HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_SET)) : (HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_RESET)))
 #define RW(x) (x==1 ? (HAL_GPIO_WritePin(RW_GPIO_Port, RW_Pin, GPIO_PIN_SET)) : (HAL_GPIO_WritePin(RW_GPIO_Port, RW_Pin, GPIO_PIN_RESET)))

@@ -17,7 +17,9 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include "main.h"
 #include "lcd.h"
+#include "uart.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -99,9 +101,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
-	NVIC_EnableIRQ(USART1_IRQn); // Enable interrupt in NVIC
-	// __HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
-	USART1->CR1 |= USART_CR1_RXNEIE; // Enable RX interrupt in USART
+	uart_init();
 	
   while (1)
   {
