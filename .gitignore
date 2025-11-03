@@ -25,7 +25,6 @@
 
 # STM32CubeMX generated (if you use it)
 /Drivers/CMSIS/
-/Drivers/STM32F1xx_HAL_Driver/
 /Middlewares/
 
 # VSCode
