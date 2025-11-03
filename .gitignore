@@ -21,6 +21,7 @@
 /.cproject
 /.project
 *.launch
+/Project Backups/ 
 
 # STM32CubeMX generated (if you use it)
 /Drivers/CMSIS/
