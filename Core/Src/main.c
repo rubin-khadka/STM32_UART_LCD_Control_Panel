@@ -100,7 +100,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
-	uart_init();
+	lcd_init();
 	
   while (1)
   {
