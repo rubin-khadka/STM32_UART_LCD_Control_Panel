@@ -101,6 +101,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 	
 	lcd_init();
+	lcd_set_cursor(0, 0);
+	lcd_print("hello");
+	HAL_Delay(3000);
+	lcd_clear();
+	lcd_print("this is too long");
 	
   while (1)
   {
