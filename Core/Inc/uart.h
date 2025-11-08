@@ -5,8 +5,29 @@
 
 /* Private includes*/
 #include "stm32f1xx_hal.h"
+#include "stdbool.h"
+
+/* Define buffer size */
+#define USART1_RX_BUF_SIZE 256  // RX buffer size
+#define USART1_TX_BUF_SIZE 256  // TX buffer size
+
+/* Circular buffer structure for UART */
+typedef struct
+{
+	uint8_t *buffer; // Pointer to buffer memory
+	uint16_t size; 	// Total buffer size
+	volatile uint16_t head; // Write Position
+	volatile uint16_t tail; // Read Position
+	volatile uint16_t count; // Number of bytes in the buffer
+	volatile bool overflow; // Overflow flag
+} usart1_buffer_t;
+
+/* External declarations */
+extern volatile usart1_buffer_t usart1_rx_buffer;
+extern volatile usart1_buffer_t usart1_tx_buffer;
 
 /* Private function definition */
-void uart_init(void);
+void usart1_init(void);
+void usart1_buffer_init(volatile usart1_buffer_t *buff, uint8_t *storage, uint16_t size);
 
 #endif
