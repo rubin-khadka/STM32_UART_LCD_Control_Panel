@@ -12,8 +12,8 @@ void usart1_init(void)
 {
 	// Register level control
 	USART1->CR1 |= USART_CR1_RXNEIE; // Enable RX Not Empty interrupt
-	USART1->CR1 |= USART_CR1_TXEIE; // Enable TX Empty interrupt
-	USART1->CR1 |= USART_CR1_TCIE; // Enable Transmission Complete interrupt 
+	// USART1->CR1 |= USART_CR1_TXEIE; // Enable TX Empty interrupt
+	// USART1->CR1 |= USART_CR1_TCIE; // Enable Transmission Complete interrupt 
 	
 	// Enable interrupt in NVIC
 	NVIC_EnableIRQ(USART1_IRQn); // Letting hardware handle the priority level of the interrupt
@@ -31,3 +31,64 @@ void usart1_buffer_init(volatile usart1_buffer_t *buff, uint8_t *storage, uint16
 	buff->count = 0;
 	buff->overflow = false;
 }
+
+bool usart1_buffer_full(volatile usart1_buffer_t *buff)
+{
+	return (buff->count >= buff->size);
+}
+
+bool usart1_buffer_empty(volatile usart1_buffer_t *buff)
+{
+	return (buff->count == 0);
+}
+
+bool usart1_buffer_write(volatile usart1_buffer_t *buff, uint8_t data)
+{
+	if (usart1_buffer_full(buff))
+	{
+		buff->overflow = true;
+		return false;
+	}
+	
+	buff->buffer[buff->head] = data;
+	buff->head = (buff->head + 1) % buff->size;
+	buff->count++;
+	
+	return true;
+}
+
+uint8_t usart1_buffer_read(volatile usart1_buffer_t *buff)
+{
+	if (usart1_buffer_empty(buff))
+	{
+		return 0;
+	}
+	
+	uint8_t data = buff->buffer[buff->tail];
+	buff->tail = (buff->tail + 1) % buff->size;
+	buff->count--;
+	
+	return data;
+}
+
+
+/* Interrupt Function */
+void usart1_rx_interrupt(void)
+{
+	uint8_t data = USART1->DR;
+	usart1_buffer_write(&usart1_rx_buffer, data);
+}
+
+void usart1_tx_interrupt(void)
+{
+	uint8_t data = usart1_buffer_read(&usart1_tx_buffer);
+	USART1->DR = data;
+}
+
+
+
+
+
+
+
+

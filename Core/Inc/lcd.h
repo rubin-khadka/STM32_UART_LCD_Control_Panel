@@ -4,6 +4,8 @@
 #define LCD_H
 
 #include "main.h"
+#include "stm32f1xx_hal.h"
+#include "stdbool.h"
 
 // LCD Pin Macros
 #define RS(x) (x==1 ? (HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_SET)) : (HAL_GPIO_WritePin(RS_GPIO_Port, RS_Pin, GPIO_PIN_RESET)))

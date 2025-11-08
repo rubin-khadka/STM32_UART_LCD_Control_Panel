@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "uart.h"
-#include "lcd.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -101,19 +100,25 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 	
 	lcd_init();
-	lcd_set_cursor(0, 0);
-	lcd_print("hello");
-	HAL_Delay(1000);
+	usart1_init();
+	
 	lcd_clear();
-	lcd_print("this is too long");
+	lcd_set_cursor(0, 0);
+	lcd_print("UART-LCD Ready!");
 	
   while (1)
-  {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+	{
+			if (!usart1_buffer_empty(&usart1_rx_buffer))
+			{
+					char received_char = usart1_buffer_read(&usart1_rx_buffer);
+					
+					// Show label once, then only update character
+					lcd_set_cursor(1, 0);
+					lcd_print("Rx: _");        // Show label with space for char
+					lcd_set_cursor(1, 4);      // Position for character
+					lcd_write_data(received_char);
+			}
+	}
 }
 
 /**
