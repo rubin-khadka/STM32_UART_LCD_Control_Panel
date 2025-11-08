@@ -22,8 +22,10 @@ typedef struct
 } usart1_buffer_t;
 
 /* External declarations */
-extern volatile usart1_buffer_t usart1_rx_buffer;
-extern volatile usart1_buffer_t usart1_tx_buffer;
+extern volatile usart1_buffer_t usart1_rx_buf;
+extern volatile usart1_buffer_t usart1_tx_buf;
+
+#define usart1_buffer_isempty(buff) (((buff)->head == (buff)->tail) ? true : false)
 
 /* Private function definition */
 void usart1_init(void);
@@ -31,7 +33,6 @@ void usart1_init(void);
 /* Core buffer functions */
 void usart1_buffer_init(volatile usart1_buffer_t *buff, uint8_t *storage, uint16_t size);
 bool usart1_buffer_full(volatile usart1_buffer_t *buff);
-bool usart1_buffer_empty(volatile usart1_buffer_t *buff);
 bool usart1_buffer_write(volatile usart1_buffer_t *buff, uint8_t data);
 uint8_t usart1_buffer_read(volatile usart1_buffer_t *buff);
 

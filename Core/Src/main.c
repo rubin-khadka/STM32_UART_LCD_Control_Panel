@@ -104,21 +104,20 @@ int main(void)
 	
 	lcd_clear();
 	lcd_set_cursor(0, 0);
-	lcd_print("UART-LCD Ready!");
 	
-  while (1)
-	{
-			if (!usart1_buffer_empty(&usart1_rx_buffer))
-			{
-					char received_char = usart1_buffer_read(&usart1_rx_buffer);
-					
-					// Show label once, then only update character
-					lcd_set_cursor(1, 0);
-					lcd_print("Rx: _");        // Show label with space for char
-					lcd_set_cursor(1, 4);      // Position for character
-					lcd_write_data(received_char);
-			}
-	}
+while (1)
+{
+    if (!usart1_buffer_isempty(&usart1_rx_buf))
+    {
+        char ch = usart1_buffer_read(&usart1_rx_buf);
+        
+        // Display on LCD
+        lcd_set_cursor(1, 5);
+        lcd_write_data(ch);
+    }
+    
+    HAL_Delay(10);
+		}
 }
 
 /**

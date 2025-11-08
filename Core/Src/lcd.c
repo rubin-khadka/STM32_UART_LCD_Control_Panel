@@ -23,7 +23,7 @@ void lcd_init(void)
 	HAL_Delay(1);  
 	
 	lcd_write_command(0x28); // 4-bit, 2-line, 5x8
-	lcd_write_command(0x0C); // Display ON
+	lcd_write_command(0x0E); // Display ON
 	lcd_write_command(0x01); // Clear display
 	HAL_Delay(2);
 	lcd_write_command(0x06); // Entry mode

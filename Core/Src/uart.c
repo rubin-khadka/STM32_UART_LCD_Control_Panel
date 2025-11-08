@@ -5,8 +5,8 @@
 /* Global buffer instances for UART*/
 uint8_t usart1_rxbuf_storage[USART1_RX_BUF_SIZE];
 uint8_t usart1_txbuf_storage[USART1_TX_BUF_SIZE];
-volatile usart1_buffer_t usart1_rx_buffer;
-volatile usart1_buffer_t usart1_tx_buffer;
+volatile usart1_buffer_t usart1_rx_buf;
+volatile usart1_buffer_t usart1_tx_buf;
 
 void usart1_init(void)
 {
@@ -18,8 +18,8 @@ void usart1_init(void)
 	// Enable interrupt in NVIC
 	NVIC_EnableIRQ(USART1_IRQn); // Letting hardware handle the priority level of the interrupt
 	
-	usart1_buffer_init(&usart1_rx_buffer, usart1_rxbuf_storage, USART1_RX_BUF_SIZE);
-	usart1_buffer_init(&usart1_tx_buffer, usart1_txbuf_storage, USART1_TX_BUF_SIZE);
+	usart1_buffer_init(&usart1_rx_buf, usart1_rxbuf_storage, USART1_RX_BUF_SIZE);
+	usart1_buffer_init(&usart1_tx_buf, usart1_txbuf_storage, USART1_TX_BUF_SIZE);
 }
 
 void usart1_buffer_init(volatile usart1_buffer_t *buff, uint8_t *storage, uint16_t size)
@@ -37,10 +37,6 @@ bool usart1_buffer_full(volatile usart1_buffer_t *buff)
 	return (buff->count >= buff->size);
 }
 
-bool usart1_buffer_empty(volatile usart1_buffer_t *buff)
-{
-	return (buff->count == 0);
-}
 
 bool usart1_buffer_write(volatile usart1_buffer_t *buff, uint8_t data)
 {
@@ -59,7 +55,7 @@ bool usart1_buffer_write(volatile usart1_buffer_t *buff, uint8_t data)
 
 uint8_t usart1_buffer_read(volatile usart1_buffer_t *buff)
 {
-	if (usart1_buffer_empty(buff))
+	if (usart1_buffer_isempty(buff))
 	{
 		return 0;
 	}
@@ -76,16 +72,14 @@ uint8_t usart1_buffer_read(volatile usart1_buffer_t *buff)
 void usart1_rx_interrupt(void)
 {
 	uint8_t data = USART1->DR;
-	usart1_buffer_write(&usart1_rx_buffer, data);
+	usart1_buffer_write(&usart1_rx_buf, data);
 }
 
 void usart1_tx_interrupt(void)
 {
-	uint8_t data = usart1_buffer_read(&usart1_tx_buffer);
+	uint8_t data = usart1_buffer_read(&usart1_tx_buf);
 	USART1->DR = data;
 }
-
-
 
 
 
