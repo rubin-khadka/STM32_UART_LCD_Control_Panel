@@ -101,23 +101,25 @@ int main(void)
 	
 	lcd_init();
 	usart1_init();
+	timer1_init();
 	
 	lcd_clear();
 	lcd_set_cursor(0, 0);
+	lcd_print("UART Ready !!!");
+	lcd_set_cursor(1, 0);
+	lcd_print("Rx: ");
 	
-while (1)
-{
-    if (!usart1_buffer_isempty(&usart1_rx_buf))
-    {
-        char ch = usart1_buffer_read(&usart1_rx_buf);
-        
-        // Display on LCD
-        lcd_set_cursor(1, 5);
-        lcd_write_data(ch);
-    }
-    
-    HAL_Delay(10);
+	while (1)
+	{
+		if (!usart1_buffer_isempty(&usart1_rx_buf))
+		{
+			char ch = usart1_buffer_read(&usart1_rx_buf);
+			
+			// Display on LCD
+			lcd_set_cursor(1, 5);
+			lcd_write_data(ch);
 		}
+	}
 }
 
 /**

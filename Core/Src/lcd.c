@@ -23,7 +23,7 @@ void lcd_init(void)
 	HAL_Delay(1);  
 	
 	lcd_write_command(0x28); // 4-bit, 2-line, 5x8
-	lcd_write_command(0x0E); // Display ON
+	lcd_write_command(0x0C); // Display ON
 	lcd_write_command(0x01); // Clear display
 	HAL_Delay(2);
 	lcd_write_command(0x06); // Entry mode
@@ -38,20 +38,20 @@ void lcd_write_command(uint8_t param)
 	lcd_process_4bit(param >>4); // High nibble first
 	lcd_process_4bit(param & 0xF); // Low nibble second
 	
-	HAL_Delay(2); // small delay, will replace by timer later
+	timer1_delay_ms(2); // small delay, will replace by timer later
 }
 
 void lcd_write_data(uint8_t param)
 {
 	// do busy check here
-	HAL_Delay(5);
+	timer1_delay_ms(5);
 	RS(1);
 	RW(0);
 	
 	lcd_process_4bit(param >>4); // High nibble first
 	lcd_process_4bit(param & 0xF); // Low nibble second
 	
-	HAL_Delay(5); // small delay, will replace by timer later
+	timer1_delay_ms(5); // small delay, will replace by timer later
 }
 
 void lcd_process_4bit(uint8_t data)
@@ -65,7 +65,7 @@ void lcd_process_4bit(uint8_t data)
 	
 	// Create small pulse, LCD samples data on the falling edge of EN
 	EN(1);
-	HAL_Delay(2); // wait for signal to stablize
+	timer1_delay_ms(2); // wait for signal to stablize
 	EN(0); // data get latched
 }
 

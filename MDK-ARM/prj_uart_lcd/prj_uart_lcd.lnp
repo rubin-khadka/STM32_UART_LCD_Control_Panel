@@ -18,6 +18,7 @@
 "prj_uart_lcd\system_stm32f1xx.o"
 "prj_uart_lcd\lcd.o"
 "prj_uart_lcd\uart.o"
+"prj_uart_lcd\timer1.o"
 --strict --scatter "prj_uart_lcd\prj_uart_lcd.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

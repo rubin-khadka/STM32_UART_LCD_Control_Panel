@@ -518,6 +518,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>TIMER1</GroupName>
+          <Files>
+            <File>
+              <FileName>timer1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\timer1.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\timer1.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>

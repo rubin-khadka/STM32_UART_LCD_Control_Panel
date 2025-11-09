@@ -1,5 +1,6 @@
 prj_uart_lcd/lcd.o: ..\Core\Src\lcd.c ..\Core\Inc\lcd.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
+  ..\Core\Inc\timer1.h ..\Core\Inc\main.h \
+  ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h \

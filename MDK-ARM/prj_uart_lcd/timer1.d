@@ -1,5 +1,4 @@
-prj_uart_lcd/stm32f1xx_it.o: ..\Core\Src\stm32f1xx_it.c \
-  ..\Core\Inc\uart.h ..\Core\Inc\lcd.h ..\Core\Inc\timer1.h \
+prj_uart_lcd/timer1.o: ..\Core\Src\timer1.c ..\Core\Inc\timer1.h \
   ..\Core\Inc\main.h ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
