@@ -68,7 +68,7 @@ uint8_t usart1_buffer_read(volatile usart1_buffer_t *buff)
 }
 
 
-/* Interrupt Function */
+/* Interrupt Functions */
 void usart1_rx_interrupt(void)
 {
 	uint8_t data = USART1->DR;

@@ -45,7 +45,7 @@ void timer1_delay_ms(uint32_t ms_delay)
 
 void TIM1_UP_IRQHandler(void)
 {
-	if(TIM1->SR & TIM_SR_UIF) // Check if interrupt cause by timer
+	if(TIM1->SR & TIM_SR_UIF) // Check if interrupt caused  by timer
 	{
 		TIM1->SR &= ~TIM_SR_UIF; // Clear interrupt flag
 		TIM1->CR1 &= ~TIM_CR1_CEN; // Stop timer
