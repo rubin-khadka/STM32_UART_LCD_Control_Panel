@@ -17,7 +17,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-
+#include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -93,8 +93,6 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
 	lcd_init();
 	usart1_init();
 	timer1_init();
@@ -104,14 +102,16 @@ int main(void)
 	lcd_print("UART Ready !!!");
 	lcd_set_cursor(1, 0);
 	lcd_print("Rx: ");
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
 	while (1)
 	{
-		/* USER CODE END WHILE */
-		
-		/* USER CODE BEGIN 3 */
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 		if (!usart1_buffer_isempty(&usart1_rx_buf))
 		{
 			char ch = usart1_buffer_read(&usart1_rx_buf);
@@ -121,7 +121,7 @@ int main(void)
 			lcd_write_data(ch);
 		}
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**
